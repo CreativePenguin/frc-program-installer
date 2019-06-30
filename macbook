@@ -41,40 +41,38 @@ echo "=================================================
 "
 brew install wget   # Needed to install online packages
 
-# Install Visual Studio Code (Java IDE for FRC)
-echo "==================================================
-       Installing Visual Studio Code
-==================================================
-"
-wget -c $VSCODE_WGET_LINK
-unzip $VSCODE_WGET_ZIP_FILE -d $VSCODE_INSTALL_PATH
-rm -f $VSCODE_WGET_ZIP_FILE
+# Generate Matrix of all the variables to use in loop b/c shellscript doesn't support 2D arrays
 
-# Install WPILib
+VARIABLES_ARRAY=($VSCODE_WGET_LINK $VSCODE_WGET_ZIP_FILE $VSCODE_INSTALL_PATH $WPILIB_WGET_LINK $WPILIB_WGET_ZIP_FILE $WPILIB_INSTALL_PATH $NAVX_WGET_LINK $NAVX_WGET_LINK $NAVX_WGET_ZIP_FILE $NAVX_INSTALL_PATH)
+# Creates a variable called matrix that stores all the values in VARIABLES_ARRAY
+declare -A matrix
+num_rows=4    # Number of things to install
+num_columns=3 # Number of variables needed per installation
+k=0
 
-echo "==================================================
-           Installing WPILIB
-==================================================
-"
-wget $WPILIB_WGET_LINK
-mkdir -p $WPILIB_INSTALL_PATH
-tar xvzf $WPILIB_WGET_ZIP_FILE -C $WPILIB_INSTALL_PATH
-rm -f $WPILIB_WGET_ZIP_FILE
+for((i=1;i<=num_rows;i++))
+do
+    for((j=1;j<=num_columns;j++))
+    do
+        matrix[$i,$j]=${VARIABLES_ARRAY[$k]}
+        k=$(( $k + 1 ))
+    done
+done
 
-# Install NavX
-
-wget $NAVX_WGET_LINK
-mkdir -p $NAVX_INSTALL_PATH
-unzip $NAVX_WGET_ZIP_FILE -d $NAVX_INSTALL_PATH
-rm -f $NAVX_WGET_ZIPFILE
-
-# Install CTRE
-
-wget $CTRE_WGET_LINK
-mkdir -p $CTRE_INSTALL_PATH
-unzip $CTRE_WGET_ZIP_FILE -d $NAVX_INSTALL_PATH
-rm -f $CTRE_WGET_ZIPFILE
-
+# Use Matrix generated to install everything
+for((i=1;i<=num_rows;i++))
+do
+    wget -c ${matrix[$i,1]}
+    case ${matrix[$i,2]} in
+        *.tar.gz)
+            tar xvzf ${matrix[$i,2]} -C ${matrix[$i,3]}
+            ;;
+        *)
+            unzip ${matrix[$i,2]} -d ${matrix[$i,3]}
+            ;;
+    esac
+    rm -f ${matrix[$i,2]}
+done
 # Set JAVA_HOME
 
 echo "export JAVA_HOME=$JAVA_HOME" >> $HOME/.profile
