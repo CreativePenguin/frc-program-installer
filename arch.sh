@@ -10,7 +10,7 @@ VSCODE_INSTALL_PATH="$HOME/Applications"
 
 WPILIB_WGET_LINK="https://github.com/wpilibsuite/allwpilib/releases/download/v2019.4.1/WPILib_Mac-2019.4.1.tar.gz"
 WPILIB_WGET_ZIP_FILE="WPILib_Mac-2019.4.1.tar.gz"
-WPILIB_INSTALL_PATH="$HOME/frc$FRC_YEAR"
+export WPILIB_INSTALL_PATH="$HOME/frc$FRC_YEAR"
 
 NAVX_WGET_LINK="http://www.kauailabs.com/public_files/navx-mxp/navx-mxp-libs.zip"
 NAVX_WGET_ZIP_FILE="navx-mxp-libs.zip"
@@ -67,10 +67,5 @@ python3 ToolsUpdater.py
 
 # Install VsCode Extensions
 
-cd $WPILIB_INSTALL_PATH/vsCodeExtensions
-code --install-extension Cpp.vsix
-code --install-extension JavaLang.vsix
-code --install-extension JavaDeps.vsix
-code --install-extension JavaDebug.vsix
-code --install-extension WPILib.vsix
+./VsCodeExtensions.sh
 
