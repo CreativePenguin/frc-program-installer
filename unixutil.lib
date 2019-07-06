@@ -2,20 +2,20 @@
 
 FRC_YEAR=(cut -d' ' -f4 <<< $now) # Gets the current year
 
-VSCODE_WGET_LINK="https://go.microsoft.com/fwlink/?LinkID=620882"
-VSCODE_WGET_ZIP_FILE="index.html?LinkID=620882"
+VSCODE_CURL_LINK="https://go.microsoft.com/fwlink/?LinkID=620882"
+VSCODE_CURL_ZIP_FILE="index.html?LinkID=620882"
 VSCODE_INSTALL_PATH="$HOME/Applications"
 
-WPILIB_WGET_LINK="https://github.com/wpilibsuite/allwpilib/releases/download/v2019.4.1/WPILib_Mac-2019.4.1.tar.gz"
-WPILIB_WGET_ZIP_FILE="WPILib_Mac-2019.4.1.tar.gz"
+WPILIB_CURL_LINK="https://github.com/wpilibsuite/allwpilib/releases/download/v2019.4.1/WPILib_Mac-2019.4.1.tar.gz"
+WPILIB_CURL_ZIP_FILE="WPILib_Mac-2019.4.1.tar.gz"
 WPILIB_INSTALL_PATH="$HOME/frc$FRC_YEAR"
 
-NAVX_WGET_LINK="http://www.kauailabs.com/public_files/navx-mxp/navx-mxp-libs.zip"
-NAVX_WGET_ZIP_FILE="navx-mxp-libs.zip"
+NAVX_CURL_LINK="http://www.kauailabs.com/public_files/navx-mxp/navx-mxp-libs.zip"
+NAVX_CURL_ZIP_FILE="navx-mxp-libs.zip"
 NAVX_INSTALL_PATH="$WPILIB_INSTALL_PATH/NavX"
 
-CTRE_WGET_LINK="http://www.ctr-electronics.com//downloads/lib/CTRE_FRCLibs_NON-WINDOWS_v4.4.1.10.zip"
-CTRE_WGET_ZIP_FILE="CTRE_FRCLibs_NON-WINDOWS_v4.4.1.10.zip"
+CTRE_CURL_LINK="http://www.ctr-electronics.com//downloads/lib/CTRE_FRCLibs_NON-WINDOWS_v4.4.1.10.zip"
+CTRE_CURL_ZIP_FILE="CTRE_FRCLibs_NON-WINDOWS_v4.4.1.10.zip"
 CTRE_INSTALL_PATH="$WPILIB_INSTALL_PATH/CTRE"
 
 JAVA_HOME="$HOME/frc$FRC_YEAR/jdk"
@@ -29,3 +29,37 @@ vscodeExtensions()
   code --install-extension JavaDebug.vsix
   code --install-extension WPILib.vsix
  }
+
+homebrewInstallation()
+{
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+}
+
+yarnInstallation()
+{
+    # install nvm in order to get a new enough version of node.js
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+
+    case $1 in
+        osx)
+            brew install yarn
+            ;;
+        arch)
+            sudo pacman -S yarn
+            ;;
+        ubuntu)
+            curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+            echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+            sudo apt-get update && sudo apt-get install yarn
+}
+
+vscodeInstallation()
+{
+    git clone https://github.com/microsoft/vscode.git #<add clone location>
+    # Uncomment next line if you want to just build using the current master state of github rather than the releases
+    git checkout $(git branch -a | grep release | tail -1)
+    cat <<EOF >> ~/.profile
+        export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Reources/app/bin"
+EOF
+
+}
