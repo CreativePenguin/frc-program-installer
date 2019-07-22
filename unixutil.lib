@@ -1,5 +1,7 @@
 # unixutil.lib
 
+# Universal methods and variables
+
 FRC_YEAR=(cut -d' ' -f4 <<< $now) # Gets the current year
 
 VSCODE_CURL_LINK="https://go.microsoft.com/fwlink/?LinkID=620882"
@@ -20,28 +22,46 @@ CTRE_INSTALL_PATH="$WPILIB_INSTALL_PATH/CTRE"
 
 JAVA_HOME="$HOME/frc$FRC_YEAR/jdk"
 
-vscodeExtensions()
+vscodeExtensionInstallation()
 {
+    case $1 in
+        macOS)
+            cat <<EOF >> ~/.profile
+                export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Reources/app/bin"
+            EOF
+            ;;
   cd $WPILIB_INSTALL_PATH/vsCodeExtensions
   code --install-extension Cpp.vsix
   code --install-extension JavaLang.vsix
   code --install-extension JavaDeps.vsix
   code --install-extension JavaDebug.vsix
   code --install-extension WPILib.vsix
- }
+}
+
+# macOS only methods
 
 homebrewInstallation()
 {
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 }
 
+vscodeLinkInstallation()
+{
+    wget -c $VSCODE_WGET_LINK
+    unzip $VSCODE_WGET_ZIP_FILE -d $VSCODE_INSTALL_PATH
+    rm -f $VSCODE_WGET_ZIP_FILE
+}
+
 yarnInstallation()
 {
     # install nvm in order to get a new enough version of node.js
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
-
+    export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    nvm install 10
     case $1 in
-        osx)
+        macOS)
             brew install yarn
             ;;
         arch)
@@ -53,13 +73,11 @@ yarnInstallation()
             sudo apt-get update && sudo apt-get install yarn
 }
 
+# Unix Only Methods
+
 vscodeInstallation()
 {
-    git clone https://github.com/microsoft/vscode.git #<add clone location>
-    # Uncomment next line if you want to just build using the current master state of github rather than the releases
-    git checkout $(git branch -a | grep release | tail -1)
-    cat <<EOF >> ~/.profile
-        export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Reources/app/bin"
-EOF
-
+    snapInstallation
+    snap install code --classic
+    vscodeExtensionInstallation
 }
