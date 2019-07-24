@@ -4,7 +4,12 @@
 
 ### Windows 10
 
-1. Follow this instruction guide and install the ubuntu terminal https://docs.microsoft.com/en-us/windows/wsl/install-win10
+> This installs git, wpilib, frc update suite, Alfred jar
+
+1. First right click powershell, and select "run as administrator"
+2. Run Set-ExecutionPolicy RemoteSigned. This is because Windows by default doesn't let you run shellscripts that aren't signed
+3. Run the shellscript with .\windows.ps1
+4. Will update on the instructions on options for the exe files
 
 ### Windows 7
 
