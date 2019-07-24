@@ -13,7 +13,7 @@
 
 ### Windows 7
 
-1. Buy Winston a cookie, and offer to do some of his math homework, and he'll write a script to do it automatically. Or just install it manually [here](ismycomputeron.com) *replace with real link when possible*
+1. Buy Winston a cookie, and offer to do some of his math homework, and he'll write a script to do it automatically. Or just install it manually [here](www.ismycomputeron.com) *replace with real link when possible*
 
 ## MacOS Instructions
 

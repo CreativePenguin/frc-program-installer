@@ -3,21 +3,24 @@
 # Universal methods and variables
 
 FRC_YEAR=(cut -d' ' -f4 <<< $now) # Gets the current year
+WPILIB_VERSION=$(curl https://github.com/wpilibsuite/allwpilib/releases/latest | cut -c90-98)
 
-VSCODE_CURL_LINK="https://go.microsoft.com/fwlink/?LinkID=620882"
-VSCODE_CURL_ZIP_FILE="index.html?LinkID=620882"
+VSCODE_WGET_LINK="https://go.microsoft.com/fwlink/?LinkID=620882"
+VSCODE_WGET_ZIP_FILE="index.html?LinkID=620882"
 VSCODE_INSTALL_PATH="$HOME/Applications"
 
-WPILIB_CURL_LINK="https://github.com/wpilibsuite/allwpilib/releases/download/v2019.4.1/WPILib_Mac-2019.4.1.tar.gz"
-WPILIB_CURL_ZIP_FILE="WPILib_Mac-2019.4.1.tar.gz"
+WPILIB_WGET_LINK="https://github.com/wpilibsuite/allwpilib/releases/download/v"$WPILIB_VERSION"/WPILib_Mac-"$WPILIB_VERSION".tar.gz"
+WPILIB_WGET_ZIP_FILE="WPILib_Mac-"$WPILIB_VERSION".tar.gz"
 WPILIB_INSTALL_PATH="$HOME/frc$FRC_YEAR"
 
-NAVX_CURL_LINK="http://www.kauailabs.com/public_files/navx-mxp/navx-mxp-libs.zip"
-NAVX_CURL_ZIP_FILE="navx-mxp-libs.zip"
+NAVX_WGET_LINK="http://www.kauailabs.com/public_files/navx-mxp/navx-mxp-libs.zip"
+NAVX_WGET_ZIP_FILE="navx-mxp-libs.zip"
 NAVX_INSTALL_PATH="$WPILIB_INSTALL_PATH/NavX"
 
-CTRE_CURL_LINK="http://www.ctr-electronics.com//downloads/lib/CTRE_FRCLibs_NON-WINDOWS_v4.4.1.10.zip"
-CTRE_CURL_ZIP_FILE="CTRE_FRCLibs_NON-WINDOWS_v4.4.1.10.zip"
+CTRE_WGET_LINK="http://www.ctr-electronics.com//downloads/lib/CTRE_FRCLibs_NON-WINDOWS_v4.4.1.10.zip"
+# Next line gets the latest version of CTRE
+# First, uses curl to downloads webpage containing links to all the downloads of ctre, then uses tail -1 to get the bottomost one, or the latest one. The result looks something like this: `<li><a href="CTRE_FRCLibs_NON-WINDOWS_v5.0.3.3.zip"> CTRE_FRCLibs_NON-WINDOWS_v5.0.3.3.zip</a></li>` so, you need to split by quotes, and get -f2 to get only the CTRE_FRCLibs_NON-Windows_v5.0.3.3.zip portion
+CTRE_WGET_ZIP_FILE=$(curl http://www.ctr-electronics.com//downloads/lib/ | grep CTRE_FRCLibs | tail -1 | cut -d'"' -f2)
 CTRE_INSTALL_PATH="$WPILIB_INSTALL_PATH/CTRE"
 
 JAVA_HOME="$HOME/frc$FRC_YEAR/jdk"
@@ -37,6 +40,37 @@ vscodeExtensionInstallation()
   code --install-extension JavaDebug.vsix
   code --install-extension WPILib.vsix
 }
+
+setEnvironmentVariables
+{
+    cat <<EOF>> ~/.profile
+        export JAVA_HOME="~/frc2019/jdk"
+        export PATH="\$PATH:$JAVA_HOME/bin
+# Add gradle home here after you figure it out
+}
+
+toolsUpdater()
+{
+    cd ~/frc2019/tools
+    python3 ToolsUpdater.py
+}
+
+navxInstallation()
+{
+    wget $NAVX_WGET_LINK
+    mkdir -p $NAVX_INSTALL_PATH
+    unzip $NAVX_WGET_ZIP_FILE -d $NAVX_INSTALL_PATH
+    rm -f $NAVX_WGET_ZIP_FILE
+}
+
+
+ctreInstallation()
+{
+    wget $CTRE_WGET_LINK
+    mkdir -p $CTRE_INSTALL_PATH
+    unzip $CTRE_WGET_ZIP_FILE -d $CTRE_INSTALL_PATH
+    rm -f $CTRE_WGET_ZIP_FILE
+}    
 
 # macOS only methods
 
@@ -75,7 +109,7 @@ yarnInstallation()
 
 # Unix Only Methods
 
-vscodeInstallation()
+vscodeSnapInstallation()
 {
     snapInstallation
     snap install code --classic
