@@ -27,18 +27,18 @@ JAVA_HOME="$HOME/frc$FRC_YEAR/jdk"
 
 vscodeExtensionInstallation()
 {
-    case $1 in
-        macOS)
-            cat <<EOF >> ~/.profile
-                export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Reources/app/bin"
-            EOF
-            ;;
-  cd $WPILIB_INSTALL_PATH/vsCodeExtensions
-  code --install-extension Cpp.vsix
-  code --install-extension JavaLang.vsix
-  code --install-extension JavaDeps.vsix
-  code --install-extension JavaDebug.vsix
-  code --install-extension WPILib.vsix
+    if [ $1 == macOS ]
+    then
+        cat <<EOF >> ~/.profile
+            export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Reources/app/bin"
+        EOF
+    fi
+    cd $WPILIB_INSTALL_PATH/vsCodeExtensions
+    code --install-extension Cpp.vsix
+    code --install-extension JavaLang.vsix
+    code --install-extension JavaDeps.vsix
+    code --install-extension JavaDebug.vsix
+    code --install-extension WPILib.vsix
 }
 
 setEnvironmentVariables
@@ -51,8 +51,16 @@ setEnvironmentVariables
 
 toolsUpdater()
 {
-    cd ~/frc2019/tools
-    python3 ToolsUpdater.py
+    cd $WPILIB_INSTALL_PATH/tools
+    python ToolsUpdater.py
+}
+
+wpilibInstallation()
+{
+    wget $WPILIB_WGET_LINK
+    mkdir -p $WPILIB_INSTALL_PATH
+    tar xvzf $WPILIB_WGET_ZIP_FILE -C $WPILIB_INSTALL_PATH
+    rm -f $WPILIB_WGET_ZIP_FILE
 }
 
 navxInstallation()
@@ -74,9 +82,12 @@ ctreInstallation()
 
 # macOS only methods
 
+# Install homebrew, and use homebrew to install git and wget
 homebrewInstallation()
 {
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    brew install git
+    brew install wget
 }
 
 vscodeLinkInstallation()

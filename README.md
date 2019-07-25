@@ -25,7 +25,6 @@ Goal: To be able to install all things frc just by running a single script
 
 ## Linux Instructions
 
-### Debian (Ubuntu)
-
 1. Install snap [here](https://docs.snapcraft.io/installing-snapd)
+Note: Installed automatically on Ubuntu
 2. Install vscode first with `snap install code --classic`
