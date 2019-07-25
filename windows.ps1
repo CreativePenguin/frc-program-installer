@@ -27,3 +27,5 @@ Expand-Archive -Path WPILibInstaller_Windows64-$test.zip -DestinationPath wpilib
 Expand-Archive -Path $frc_update_suite_zip_file_name -DestinationPath wpilib
 & .\'wpilib\WPILibInstaller_Windows64-'$wpilib_version'.exe'
 .\wpilib\setup.exe
+mkdir C:\Users\public\frc2019\stuypulse
+cp util\Alfred-NoDependencies.jar C:\Users\public\frc2019\stuypulse
