@@ -1,17 +1,20 @@
 # frc-program-installer
 
+Goal: To be able to install all things frc just by running a single script
+
 ## Windows Instructions
 
-### Windows 10
+### Windows 7 & 10
 
 > This installs git, wpilib, frc update suite, Alfred jar
 
 1. First right click powershell, and select "run as administrator"
-2. Run Set-ExecutionPolicy RemoteSigned. This is because Windows by default doesn't let you run shellscripts that aren't signed
+2. Type in `$PSVersionTable`, and verify that the powershell version is higher than 3
+2. Run `Set-ExecutionPolicy RemoteSigned`. This is because Windows by default doesn't let you run scripts that aren't signed.
 3. Run the shellscript with .\windows.ps1
 4. Will update on the instructions on options for the exe files
 
-### Windows 7
+### Windows (Powershell Version Under 3)
 
 1. Buy Winston a cookie, and offer to do some of his math homework, and he'll write a script to do it automatically. Or just install it manually [here](www.ismycomputeron.com) *replace with real link when possible*
 
@@ -24,10 +27,5 @@
 
 ### Debian (Ubuntu)
 
-1. Install vscode first with `snap install code --classic`
-
-### Red Hat (Fedora) -- untested bc no one on the team uses this
-
-### Arch
-
 1. Install snap [here](https://docs.snapcraft.io/installing-snapd)
+2. Install vscode first with `snap install code --classic`
