@@ -38,3 +38,6 @@ toolsUpdater
 
 VsCodeExtensions linux
 
+# Install StuyPulse Jars
+
+stuyJarInstallation

@@ -36,4 +36,5 @@ cp util\*.jar C:\Users\public\frc2019\stuypulse
 & 'C:\Windows\System32\cmd.exe'
 setx /M PATH "%PATH%;C:\Users\Public\frc2019\jdk\bin"
 setx /M JAVA_HOME "C:\Users\Public\frc2019\jdk"
+setx /M FRC_HOME "C:\Users\Public\frc2019"
 exit

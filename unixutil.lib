@@ -44,8 +44,9 @@ vscodeExtensionInstallation()
 setEnvironmentVariables
 {
     cat <<EOF>> ~/.profile
-        export JAVA_HOME="~/frc2019/jdk"
-        export PATH="\$PATH:$JAVA_HOME/bin
+        export JAVA_HOME=$JAVA_HOME
+        export PATH="\$PATH:$JAVA_HOME/bin"
+        export FRC_HOME=$WPILIB_INSTALL_PATH
 # Add gradle home here after you figure it out
 }
 
@@ -78,7 +79,13 @@ ctreInstallation()
     mkdir -p $CTRE_INSTALL_PATH
     unzip $CTRE_WGET_ZIP_FILE -d $CTRE_INSTALL_PATH
     rm -f $CTRE_WGET_ZIP_FILE
-}    
+}
+
+stuyJarInstallation()
+{
+    mkdir $WPILIB_INSTALL_PATH/stuypulse
+    cp util/*.jar $WPILIB_INSTALL_PATH/stuypulse
+}
 
 # macOS only methods
 
@@ -118,7 +125,7 @@ yarnInstallation()
             sudo apt-get update && sudo apt-get install yarn
 }
 
-# Unix Only Methods
+# Linux Only Methods
 
 vscodeSnapInstallation()
 {

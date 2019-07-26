@@ -42,3 +42,7 @@ toolsUpdater
 
 vscodeExtensionsInstallation macOS
 
+# Install stuypulse jars
+
+stuyJarInstallation
+
