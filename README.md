@@ -2,6 +2,8 @@
 
 Goal: To be able to install all things frc just by running a single script
 
+[Trello Card](https://trello.com/c/xRbghY4X/196-develop-script-that-installs-all-things-frc)
+
 ## Windows Instructions
 
 ### Windows 7 & 10
