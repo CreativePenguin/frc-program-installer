@@ -1,6 +1,7 @@
 # frc-program-installer
 
-Goal: To be able to install all things frc just by running a single script
+Goal: To be able to install all things frc just by running a single script (should work for everything other than windows)
+Goal: Add the stuypulse library as a subtree so that it will update automatically
 
 [Trello Card](https://trello.com/c/xRbghY4X/196-develop-script-that-installs-all-things-frc)
 
