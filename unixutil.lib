@@ -34,11 +34,13 @@ vscodeExtensionInstallation()
         EOF
     fi
     cd $WPILIB_INSTALL_PATH/vsCodeExtensions
-    code --install-extension --force Cpp.vsix
-    code --install-extension --force JavaLang.vsix
-    code --install-extension --force JavaDeps.vsix
-    code --install-extension --force JavaDebug.vsix
-    code --install-extension --force WPILib.vsix
+    code Cpp.vsix
+    code JavaLang.vsix
+    code JavaDeps.vsix
+    code JavaDebug.vsix
+    code WPILib.vsix
+    code --install-extension redhat.java
+    code --install-extension EditorConfig.EditorConfig
 }
 
 setEnvironmentVariables
