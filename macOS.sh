@@ -2,7 +2,7 @@
 
 . ./unixutil.lib
 
-echo "Installing everything needed for 2019 FRC development for Macbook"
+echo "Installing everything needed for 2019 FRC development for MacOS"
 
 # Install Homebrew (package manager for macs)
 homebrewInstallation
@@ -42,7 +42,7 @@ toolsUpdater
 
 vscodeExtensionsInstallation macOS
 
-# Install stuypulse jars
+# Install stuypulse jars -- not needed because of StuyLib
 
-stuyJarInstallation
+# stuyJarInstallation
 
