@@ -19,7 +19,8 @@ Goal: Add the stuypulse library as a subtree so that it will update automaticall
 
 ### Windows (Powershell Version Under 3)
 
-1. Buy Winston a cookie, and offer to do some of his math homework, and he'll write a script to do it automatically. Or just install it manually [here](www.ismycomputeron.com) *replace with real link when possible*
+1. Install it manuall [here](https://classroom.google.com) *replace with real link when possible*
+2. If you want to have another installer for all this stuff automatically, message Winston [here](https://www.ismycomputeronfire.com)
 
 ## MacOS Instructions
 
