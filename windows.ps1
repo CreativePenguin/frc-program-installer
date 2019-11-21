@@ -29,8 +29,9 @@ Expand-Archive -Path $frc_update_suite_zip_file_name -DestinationPath wpilib
 # run exe files that are unzipped
 & .\'wpilib\WPILibInstaller_Windows64-'$wpilib_version'.exe'
 .\wpilib\setup.exe
-mkdir C:\Users\public\frc2019\stuypulse
-cp util\*.jar C:\Users\public\frc2019\stuypulse
+# Next lines will likely no longer need to be in use because of stuylib
+# mkdir C:\Users\public\frc2019\stuypulse
+# cp util\*.jar C:\Users\public\frc2019\stuypulse
 
 # run command prompt again to edit system variables
 & 'C:\Windows\System32\cmd.exe'
