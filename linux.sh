@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. ./unixutil.lib
+. util/unixutil.lib
 
 echo "Installing everything needed for 2019 FRC development for Linux"
 
