@@ -12,7 +12,7 @@ echo "==================================================
        Installing Visual Studio Code
 ==================================================
 "
-vscodeLinkInstallation
+vscodeCaskInstallation
 
 # Install WPILib
 
@@ -40,9 +40,4 @@ toolsUpdater
 
 # Install VsCode Packages
 
-vscodeExtensionsInstallation macOS
-
-# Install stuypulse jars -- not needed because of StuyLib
-
-# stuyJarInstallation
-
+vscodeExtensionInstallation

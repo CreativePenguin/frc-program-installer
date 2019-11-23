@@ -34,10 +34,6 @@ setEnvironmentVariables
 
 toolsUpdater
 
-# Install VsCode Extensions
+# Install vscode extensions
 
-VsCodeExtensions linux
-
-# Install StuyPulse Jars
-
-stuyJarInstallation
+vscodeExtensionInstallation

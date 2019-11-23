@@ -1,1 +1,0 @@
-compileOnly files(System.getProperty("user.home") + "/robotics-workspace/Alfred/build/libs/Alfred.jar")

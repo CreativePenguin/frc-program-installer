@@ -2,7 +2,7 @@
 
 # Universal methods and variables
 
-FRC_YEAR=(cut -d' ' -f4 <<< $now) # Gets the current year
+FRC_YEAR=$(date '+%j')
 WPILIB_VERSION=$(curl https://github.com/wpilibsuite/allwpilib/releases/latest | cut -c90-98)
 
 VSCODE_WGET_LINK="https://go.microsoft.com/fwlink/?LinkID=620882"
@@ -27,12 +27,6 @@ JAVA_HOME="$HOME/frc$FRC_YEAR/jdk"
 
 vscodeExtensionInstallation()
 {
-    if [ $1 == macOS ]
-    then
-        cat <<EOF >> ~/.profile
-            export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Reources/app/bin"
-        EOF
-    fi
     cd $WPILIB_INSTALL_PATH/vsCodeExtensions
     code Cpp.vsix
     code JavaLang.vsix
@@ -43,13 +37,14 @@ vscodeExtensionInstallation()
     code --install-extension EditorConfig.EditorConfig
 }
 
-setEnvironmentVariables
+setEnvironmentVariables()
 {
-    cat <<EOF>> ~/.profile
-        export JAVA_HOME=$JAVA_HOME
-        export PATH="\$PATH:$JAVA_HOME/bin"
-        export FRC_HOME=$WPILIB_INSTALL_PATH
-# Add gradle home here after you figure it out
+    echo 'export JAVA_HOME=$JAVA_HOME
+export PATH="$PATH:$JAVA_HOME/bin"
+export FRC_HOME=$WPILIB_INSTALL_PATH' >> ~/.profile
+    echo 'export JAVA_HOME=$JAVA_HOME
+export PATH="$PATH:$JAVA_HOME/bin"
+export FRC_HOME=$WPILIB_INSTALL_PATH' >> ~/.bashrc
 }
 
 toolsUpdater()
@@ -83,55 +78,44 @@ ctreInstallation()
     rm -f $CTRE_WGET_ZIP_FILE
 }
 
-stuyJarInstallation()
-{
-    mkdir $WPILIB_INSTALL_PATH/stuypulse
-    cp util/*.jar $WPILIB_INSTALL_PATH/stuypulse
-}
-
 # macOS only methods
 
 # Install homebrew, and use homebrew to install git and wget
 homebrewInstallation()
 {
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    brew install git
-    brew install wget
+    echo "Checking if homebrew exists"
+    if [ ! isDependencyInPATH brew ]; then
+        echo 'Installing homebrew'
+        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    fi
+    echo "Installing git and wget using brew"
+    brew install git wget
 }
 
-vscodeLinkInstallation()
+# This method checks to see if the dependency already exists in PATH
+isDependencyInPATH()
 {
-    wget -c $VSCODE_WGET_LINK
-    unzip $VSCODE_WGET_ZIP_FILE -d $VSCODE_INSTALL_PATH
-    rm -f $VSCODE_WGET_ZIP_FILE
+    # python getPATH.py prints out array for all folders in PATH
+    [ ! -z "$(for i in $(python getPATH.py)
+    do
+        ls $i
+    done | grep -sw $1)" ]
 }
 
-yarnInstallation()
+vscodeCaskInstallation()
 {
-    # install nvm in order to get a new enough version of node.js
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
-    export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-    nvm install 10
-    case $1 in
-        macOS)
-            brew install yarn
-            ;;
-        arch)
-            sudo pacman -S yarn
-            ;;
-        ubuntu)
-            curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-            echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-            sudo apt-get update && sudo apt-get install yarn
+    brew cask install visual-studio-code
 }
 
 # Linux Only Methods
 
 vscodeSnapInstallation()
 {
-    snapInstallation
-    snap install code --classic
-    vscodeExtensionInstallation
+    if [ ! isDependencyInPATH snap ]; then
+        echo 'Please install the snap dependency here: https://snapcraft.io/docs/installing-snapd'
+        echo 'A snap automatically installs the app + dependencies'
+        echo "They're designed to work regardless of the linux distribution"
+    else
+        snap install code --classic
+    fi
 }
