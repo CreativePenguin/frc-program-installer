@@ -17,7 +17,7 @@ echo "==================================================
            Installing WPILIB
 ==================================================
 "
-wpilibInstallation
+wpilibInstallation linux
 
 # Install NavX
 navxInstallation
