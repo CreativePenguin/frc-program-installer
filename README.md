@@ -30,7 +30,7 @@ This is because Windows by default doesn't let you run scripts that aren't signe
 
 ## MacOS Instructions
 > Note: This is temporarily broken on macOS see why here: https://github.com/microsoft/vscode/issues/74782
-This installs wpilib, ctre, and navx
+This installs wpilib, ctre, and navx  
 Dependencies -- [homebrew](https://brew.sh/), wget
 
 1. If git is not pre-installed, type in `xcode-select --install` to install it
@@ -41,6 +41,7 @@ Dependencies -- [homebrew](https://brew.sh/), wget
 ## Linux Instructions
 
 ### Ubuntu Instructions
+> This installs wpilib, ctre, and navx  
 1. Clone this git repo by typing `git clone https://github.com/StuyPulse/frc-program-installer.git`
 1. Type `chmod +x linux.sh` into terminal. See MacOS instructions for explanation
 2. Type `. ./linux.sh`. This will execute the script, and install everything. There's an extra dot added before it so that it runs the script within the same shell instead of spawning another shell.|
