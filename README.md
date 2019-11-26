@@ -36,7 +36,7 @@ Dependencies -- [homebrew](https://brew.sh/), wget
 
 1. If you haven't already, type in `xcode-select --install` to get macOS developer tools
 1. Clone this git repo by typing `git clone https://github.com/StuyPulse/frc-program-installer.git`
-1. Type `chmod +x macOS.sh` into terminal. `sudo` means to use administrative powers, `chmod` let's you changed the permissions of an object. You can make it read-only, or give you permission to write to the file. In this case, we typed `+x`. This gives us the permission to execute the file like we'll do in the next step
+1. Type `chmod +x macOS.sh` into terminal. `chmod` let's you changed the permissions of an object. You can make it read-only, or give you permission to write to the file. In this case, we typed `+x`. This gives us the permission to execute the file like we'll do in the next step
 2. Type `. ./macOS.sh`. This will execute the script, and install everything. There's an extra dot added before it so that it runs the script within the same shell instead of spawning another shell.
 
 ## Linux Instructions
