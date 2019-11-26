@@ -3,6 +3,9 @@
 Goal: To be able to install all things frc just by running a single script, should require no user input
 [Trello Card](https://trello.com/c/xRbghY4X/196-develop-script-that-installs-all-things-frc)
 
+**Non Windows Users Note**: There are some applications that are exclusive to windows laptops.
+You will be able to code regardless of the os, however, do note that certain testing applications are exclusive to windows
+
 ## Windows Instructions
 
 ### Windows 7 & 10  
