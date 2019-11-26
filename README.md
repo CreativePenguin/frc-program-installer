@@ -31,7 +31,7 @@ This is because Windows by default doesn't let you run scripts that aren't signe
 ## MacOS Instructions
 > Note: This is temporarily broken on macOS see why here: https://github.com/microsoft/vscode/issues/74782
 This installs wpilib, ctre, and navx
-Dependencies -- wget, homebrew
+Dependencies -- [homebrew](https://brew.sh/), wget
 
 1. If git is not pre-installed, type in `xcode-select --install` to install it
 1. Clone this git repo by typing `git clone https://github.com/StuyPulse/frc-program-installer.git`
@@ -45,6 +45,7 @@ Dependencies -- wget, homebrew
 1. Type `chmod +x linux.sh` into terminal. See MacOS instructions for explanation
 2. Type `. ./linux.sh`. This will execute the script, and install everything. There's an extra dot added before it so that it runs the script within the same shell instead of spawning another shell.|
 
-### Everything Else Instructions
+### Other Distro Instructions
 1. Install `snapd` by following this link [here](https://snapcraft.io/docs/installing-snapd)  
 Snap is a program that let's you download packages regardless of the linux distro. That's where we're downloading vscode from.
+2. Follow Ubuntu instructions from here
