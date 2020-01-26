@@ -1,0 +1,7 @@
+[Windows]
+api = "https://update.code.visualstudio.com/api/update/win32-x64/stable/VERSION"
+url = "https://aka.ms/win32-x64-user-stable"
+[Darwin]
+api = "https://update.code.visualstudio.com/api/update/darwin/stable/VERSION"
+[Linux]
+api = "https://update.code.visualstudio.com/api/update/linux-snap-x64/stable/VERSION"
