@@ -4,10 +4,7 @@
 
 Goal: To write a package manager for frc tools because that's totally 100% necessary  
 This project is based off of [sdkman](https://sdkman.io) and [homebrew](https://brew.sh)  
-Might want to just make it a [homebrew tap]
-(https://github.com/Homebrew/brew/blob/master/docs/How-to-Create-and-Maintain-a-Tap.md)
-or [chocolatey package]
-(https://github.com/chocolatey-community/chocolatey-packages-template)
+Might want to just make it a [homebrew tap](https://github.com/Homebrew/brew/blob/master/docs/How-to-Create-and-Maintain-a-Tap.md) and [chocolatey package](https://github.com/chocolatey-community/chocolatey-packages-template)
 
 **Non Windows Users Note**: There are some applications that are exclusive to Windows.
 However, you will be able to write robot code regardless of the OS.
