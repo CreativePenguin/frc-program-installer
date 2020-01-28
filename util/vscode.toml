@@ -1,7 +1,10 @@
 [Windows]
 api = [ "https://update.code.visualstudio.com/api/update/win32-x64/stable/VERSION", "url" ]
 url = "https://aka.ms/win32-x64-user-stable"
+binary = "VSCodeSetup-x64-1.4.1.exe"
 [macOS]
 api = "https://update.code.visualstudio.com/api/update/darwin/stable/VERSION"
+binary = "VSCode-darwin-stable.zip"
 [Linux]
 api = "https://update.code.visualstudio.com/api/update/linux-snap-x64/stable/VERSION"
+# binary = "code-stable-"
