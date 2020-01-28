@@ -1,9 +1,13 @@
-<a href="http://spacemacs.org"><img src="https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg" alt="Made with Spacemacs"></a><a href="http://www.twitter.com/spacemacs"><img src="http://i.imgur.com/tXSoThF.png" alt="Twitter" align="right"></a><br>
+<a href="http://spacemacs.org"><img src="https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg" alt="Made with Spacemacs"></a>
 ---
 # Chainsaw
 
 Goal: To write a package manager for frc tools because that's totally 100% necessary  
-This project is based off of [sdkman](https://sdkman.io) and [homebrew](https://brew.sh)
+This project is based off of [sdkman](https://sdkman.io) and [homebrew](https://brew.sh)  
+Might want to just make it a [homebrew tap]
+(https://github.com/Homebrew/brew/blob/master/docs/How-to-Create-and-Maintain-a-Tap.md)
+or [chocolatey package]
+(https://github.com/chocolatey-community/chocolatey-packages-template)
 
 **Non Windows Users Note**: There are some applications that are exclusive to Windows.
 However, you will be able to write robot code regardless of the OS.
