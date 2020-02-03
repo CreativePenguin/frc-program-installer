@@ -13,13 +13,14 @@ Usage: csaw <command> [candidate] [version]
         upgrade
 '''
 NO_INPUTS_MSG = '''
-Usage: csaw <command> [candidate] [version]
+Usage: csaw <command> [candidate]
 
     commands:
-        install     or i    <candidate> [version]
-        uninstall   or rm   <candidate> <version>
-        list        or ls   [candidate]
+        install     or i    [application]
+        uninstall   or rm   [application]
+        list        or ls
         help        or h
+		new					[project name]
 '''
 def getOS():
     """Returns current os that matches toml description
